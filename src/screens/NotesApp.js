@@ -6,18 +6,14 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Card from '../components/Card';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
-
-
-
 const NotesApp = () => {
   const [icon, setIcon] = useState(false);
-  const [search, setSearch] = useState(false);
 
   const navigation = useNavigation();
 
@@ -31,7 +27,6 @@ const NotesApp = () => {
     setIcon(!icon);
     return data;
   };
-
 
 
   return (
@@ -116,7 +111,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    backgroundColor:"white"
+    backgroundColor: 'white',
   },
   btnContainer: {
     backgroundColor: 'green',
