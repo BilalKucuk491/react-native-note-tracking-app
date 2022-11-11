@@ -6,26 +6,47 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Card from '../components/Card';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
+
+
+
 const NotesApp = () => {
   const [icon, setIcon] = useState(false);
+  const [search, setSearch] = useState(false);
+
   const navigation = useNavigation();
+
   const state = useSelector(state => state);
+
+  const data = icon
+    ? state.noteList.sort((a, b) => a.title.localeCompare(b.title))
+    : state.noteList.sort((a, b) => a.title.localeCompare(b.title)).reverse();
+
+  const OnPressEvent = () => {
+    setIcon(!icon);
+    return data;
+  };
+
+
 
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
-        <TextInput style={styles.textInput} placeholder={'search...'} />
+        <TextInput
+          style={styles.textInput}
+          placeholder={'search...'}
+          onChangeText={item => setSearch(item)}
+        />
         <TouchableOpacity
           style={styles.sortingContainer}
-          onPress={() => setIcon(!icon)}>
+          onPress={() => OnPressEvent()}>
           <Text style={styles.btnSortByText}>Sort by</Text>
-          {/* users.sort((a, b) => a.firstname.localeCompare(b.firstname)) */}
+
           <FontAwesome5Icon
             size={24}
             name={icon ? 'sort-alpha-up' : 'sort-alpha-up-alt'}
@@ -34,7 +55,7 @@ const NotesApp = () => {
         </TouchableOpacity>
       </View>
       <ScrollView>
-        {state.noteList
+        {data
           .filter(el => {
             return el != null;
           })
