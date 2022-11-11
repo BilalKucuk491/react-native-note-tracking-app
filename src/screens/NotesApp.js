@@ -6,7 +6,7 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Card from '../components/Card';
 import {useNavigation} from '@react-navigation/native';
@@ -14,6 +14,7 @@ import {useSelector} from 'react-redux';
 
 const NotesApp = () => {
   const [icon, setIcon] = useState(false);
+  const [search, setSearch] = useState(false);
 
   const navigation = useNavigation();
 
@@ -28,6 +29,16 @@ const NotesApp = () => {
     return data;
   };
 
+  // useEffect(() => {
+  //   const searchTitle = data.find(item => {
+  //     return item.title.toUpperCase() == search.toUpperCase();
+  //   })
+
+  //  if (searchTitle !== undefined) {
+    
+  //   return data.filter((item)=> {return item.title.toUpperCase() == search.toUpperCase() } )
+  //  }
+  // }, [search]);
 
   return (
     <View style={styles.mainContainer}>
