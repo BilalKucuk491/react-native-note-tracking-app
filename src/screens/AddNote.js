@@ -40,7 +40,7 @@ const AddNote = () => {
           color: colors[Math.floor(Math.random() * colors.length)],
         }),
       );
-      navigation.navigate('NoteScreen');
+      navigation.navigate('HomeScreen');
     } else {
       alert('Lutfen duzgun deger giriniz');
     }

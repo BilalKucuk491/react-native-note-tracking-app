@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 const Note = () => {
 
   const state = useSelector(state => state);
-  const data = state.noteList[state.id-1];
+  const data = state.noteList[state.selectNumber];
   return (
     <View style={styles.container}>
       <View style={styles.noteContextContainer}>
