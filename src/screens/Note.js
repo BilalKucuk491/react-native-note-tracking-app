@@ -1,14 +1,14 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
-import data from '../assets/data';
 
 import {useSelector} from 'react-redux';
+
 const Note = () => {
 
   const state = useSelector(state => state);
   const data = state.noteList[state.selectNumber];
   return (
-    <View style={styles.container}>
+    <View style={{flex:1, backgroundColor:data.color}}>
       <View style={styles.noteContextContainer}>
         <Text style={styles.noteTitle}>{data.title}</Text>
         <ScrollView>
@@ -23,10 +23,7 @@ const Note = () => {
 export default Note;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#C40037',
-  },
+  
   noteContextContainer: {
     margin: 30,
   },

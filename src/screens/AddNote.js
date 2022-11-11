@@ -12,7 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 import colors from '../assets/colors';
 import {addList} from '../redux/actions/noteActions';
-import { selectNoteID } from '../redux/actions/noteActions';
+import {selectNoteID} from '../redux/actions/noteActions';
 const screen = Dimensions.get('screen');
 
 const AddNote = () => {
@@ -24,10 +24,13 @@ const AddNote = () => {
   const [titleValue, setTitleValue] = useState();
   const [dateValue, setDateValue] = useState();
   const [noteValue, setNoteValue] = useState();
+  const [colorValue, setColorValue] = useState('NULL');
+
+  bgColor = colors[Math.floor(Math.random() * colors.length)];
+  colorValue === 'NULL' ? setColorValue(bgColor) : '';
 
   const OnPressEvent = () => {
     if ((titleValue, dateValue, noteValue != null)) {
-      
       idDispatch(selectNoteID(state.noteList.length));
 
       dispatch(
@@ -37,7 +40,7 @@ const AddNote = () => {
           date: dateValue,
           titleType: 'Personel',
           note: noteValue,
-          color: colors[Math.floor(Math.random() * colors.length)],
+          color: colorValue,
         }),
       );
       navigation.navigate('HomeScreen');
@@ -47,7 +50,7 @@ const AddNote = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{flex: 1, backgroundColor: colorValue}}>
       <View style={styles.noteContextContainer}>
         <View style={styles.noteHeaderContainer}>
           <TextInput
@@ -83,10 +86,6 @@ const AddNote = () => {
 export default AddNote;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#C40037',
-  },
   noteContextContainer: {
     margin: 30,
   },
