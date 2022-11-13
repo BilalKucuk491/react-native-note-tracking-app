@@ -1,6 +1,6 @@
 <h1>Technologies</h1>
-<h2>React Redux</h2>
-<h2>React Navigation</h2>
+<li>React Redux</li>
+<li>React Navigation</li>
 
 <h1>Screenshots</h1>
 
